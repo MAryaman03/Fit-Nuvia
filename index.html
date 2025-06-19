@@ -16,18 +16,21 @@
         }
         .switch-section {
             display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
         }
         .switch-section.active {
             display: block;
-            animation: fadeIn 0.5s ease-in-out;
+            opacity: 1;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.5s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
         }
         .motivation-quote {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+                        url('https://images.unsplash.com/photo-1538805060514-97d9cc17730c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
             background-size: cover;
             background-position: center;
         }
@@ -48,8 +51,8 @@
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="#" class="nav-link text-white hover:text-blue-200 transition-colors duration-300 font-medium" data-section="app">Home</a>
-                    <a href="#" class="nav-link text-white hover:text-blue-200 transition-colors duration-300 font-medium" data-section="about">About Me</a>
-                    <a href="https://nuvia.sbs" class="bg-white text-blue-800 hover:bg-blue-50 transition-colors duration-300 px-4 py-2 rounded-lg font-medium">Join Now</a>
+                    <a href="#" class="nav-link text-white hover:text-blue-200 transition-colors duration-300 font-medium" data-section="goals">Goals</a>
+                    <a href="#" class="nav-link text-white hover:text-blue-200 transition-colors duration-300 font-medium" data-section="about">About</a>
                 </div>
                 
                 <!-- Mobile menu button -->
@@ -65,8 +68,8 @@
         <div id="mobile-menu" class="md:hidden hidden bg-blue-900 transition-all duration-300 ease-in-out">
             <div class="px-2 pt-2 pb-4 space-y-1">
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-700 transition-colors duration-300 nav-link" data-section="app">Home</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-700 transition-colors duration-300 nav-link" data-section="about">About Me</a>
-                <a href="https://nuvia.sbs" class="block px-3 py-2 rounded-md text-base font-medium bg-white text-blue-800 hover:bg-gray-100 transition-colors duration-300">Join Now</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-700 transition-colors duration-300 nav-link" data-section="goals">Goals</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-700 transition-colors duration-300 nav-link" data-section="about">About</a>
             </div>
         </div>
     </nav>
@@ -87,21 +90,22 @@
         <div class="container mx-auto px-4 py-12">
             <!-- Training Photos Gallery -->
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Training Highlights</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-                <div class="rounded-lg overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
-                         alt="Personal Training" class="w-full h-48 object-cover">
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+                <!-- Personal Training -->
                 <div class="rounded-lg overflow-hidden shadow-md">
                     <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                         alt="Weight Lifting" class="w-full h-48 object-cover">
+                         alt="Personal Training Session" class="w-full h-48 object-cover">
                 </div>
+                
+                <!-- Fitness Coaching Session -->
                 <div class="rounded-lg overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1571019614242-c955c18a2878?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                         alt="Fitness Coaching" class="w-full h-48 object-cover">
+                    <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Fitness Coaching Session" class="w-full h-48 object-cover">
                 </div>
+                
+                <!-- Nutrition Guidance -->
                 <div class="rounded-lg overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" 
                          alt="Nutrition Guidance" class="w-full h-48 object-cover">
                 </div>
             </div>
@@ -174,7 +178,7 @@
                     <!-- Meal 5 -->
                     <div class="border border-gray-200 rounded-lg p-4">
                         <h3 class="text-xl font-semibold text-gray-800 mb-2">Meal 5: Before Bed</h3>
-                        <ul class="text-gray-600 space-y-2">
+                        <ul class="text-gray-6 00 space-y-2">
                             <li>• 1 cup cottage cheese</li>
                             <li>• 1 tbsp peanut butter</li>
                             <li>• 1 scoop casein protein</li>
@@ -196,6 +200,229 @@
                             <li>• Healthy fats are essential</li>
                             <li>• Track your macros</li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Goals Section -->
+    <section id="goals-section" class="switch-section py-12">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl font-bold text-center text-gray-800 mb-12">Fitness Goals Tracker</h1>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Fitness Dashboard -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <!-- Steps Tracker -->
+                    <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center">
+                        <div class="relative w-24 h-24 mb-4">
+                            <svg class="progress-ring w-full h-full" width="120" height="120">
+                                <circle class="progress-ring__circle" stroke="#3b82f6" stroke-width="8" fill="transparent" r="52" cx="60" cy="60" 
+                                        stroke-dasharray="326.56" stroke-dashoffset="163.28" />
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-walking text-blue-600 text-3xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800">Daily Steps</h3>
+                        <p class="text-3xl font-bold text-blue-600">7,850</p>
+                        <p class="text-gray-500 text-sm">65% of 12,000 goal</p>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Workout Tracker -->
+                    <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center">
+                        <div class="relative w-24 h-24 mb-4">
+                            <svg class="progress-ring w-full h-full" width="120" height="120">
+                                <circle class="progress-ring__circle" stroke="#10b981" stroke-width="8" fill="transparent" r="52" cx="60" cy="60" 
+                                        stroke-dasharray="326.56" stroke-dashoffset="81.64" />
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-dumbbell text-green-600 text-3xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800">Weekly Workouts</h3>
+                        <p class="text-3xl font-bold text-green-600">4</p>
+                        <p class="text-gray-500 text-sm">75% of 5 workout goal</p>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                            <div class="bg-green-600 h-2.5 rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Water Intake -->
+                    <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center">
+                        <div class="relative w-24 h-24 mb-4">
+                            <svg class="progress-ring w-full h-full" width="120" height="120">
+                                <circle class="progress-ring__circle" stroke="#06b6d4" stroke-width="8" fill="transparent" r="52" cx="60" cy="60" 
+                                        stroke-dasharray="326.56" stroke-dashoffset="130.624" />
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-tint text-cyan-500 text-3xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800">Water Intake</h3>
+                        <p class="text-3xl font-bold text-cyan-500">2.8L</p>
+                        <p class="text-gray-500 text-sm">70% of 4L goal</p>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                            <div class="bg-cyan-500 h-2.5 rounded-full" style="width: 70%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Workout Plan -->
+                <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Today's Workout Plan</h2>
+                    
+                    <div class="space-y-4">
+                        <!-- Exercise 1 -->
+                        <div class="exercise-card bg-gray-50 rounded-lg p-4 shadow-sm border border-gray-200 transition cursor-pointer">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-dumbbell text-blue-600 text-xl"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-gray-800">Upper Body Strength</h3>
+                                    <p class="text-gray-500 text-sm">Bench Press: 4x8 • Shoulder Press: 3x10 • Rows: 3x12</p>
+                                </div>
+                                <div class="flex items-center">
+                                    <button class="text-blue-600 hover:text-blue-800">
+                                        <i class="fas fa-check-circle text-xl"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Exercise 2 -->
+                        <div class="exercise-card bg-gray-50 rounded-lg p-4 shadow-sm border border-gray-200 transition cursor-pointer">
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-running text-green-600 text-xl"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-gray-800">Cardio Session</h3>
+                                    <p class="text-gray-500 text-sm">30 mins HIIT • 5 min warmup/cooldown</p>
+                                </div>
+                                <div class="flex items-center">
+                                    <button class="text-green-600 hover:text-green-800">
+                                        <i class="fas fa-check-circle text-xl"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Exercise 3 -->
+                        <div class="exercise-card bg-gray-50 rounded-lg p-4 shadow-sm border border-gray-200 transition cursor-pointer">
+                            <div class="flex items-start">
+                                <div class="bg-purple-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-water text-purple-600 text-xl"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-gray-800">Core Work</h3>
+                                    <p class="text-gray-500 text-sm">Plank variations • 3 rounds</p>
+                                </div>
+                                <div class="flex items-center">
+                                    <button class="text-purple-600 hover:text-purple-800">
+                                        <i class="fas fa-check-circle text-xl"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Nutrition Tracking -->
+                <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Nutrition Tracking</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Macronutrients -->
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-4">Macronutrients</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm font-medium text-gray-700">Protein</span>
+                                        <span class="text-sm font-medium text-gray-700">145/180g</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-red-500 h-2.5 rounded-full" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm font-medium text-gray-700">Carbs</span>
+                                        <span class="text-sm font-medium text-gray-700">210/300g</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-blue-500 h-2.5 rounded-full" style="width: 70%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm font-medium text-gray-700">Fats</span>
+                                        <span class="text-sm font-medium text-gray-700">60/80g</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Meal Log -->
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-4">Today's Meals</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center border-b pb-2">
+                                    <span class="text-gray-600">Breakfast</span>
+                                    <span class="text-sm font-medium text-gray-700">750 kcal</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b pb-2">
+                                    <span class="text-gray-600">Lunch</span>
+                                    <span class="text-sm font-medium text-gray-700">850 kcal</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b pb-2">
+                                    <span class="text-gray-600">Snack</span>
+                                    <span class="text-sm font-medium text-gray-700">300 kcal</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600">Dinner</span>
+                                    <span class="text-sm font-medium text-gray-700">600 kcal</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Progress Charts -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Weekly Progress</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Workout Frequency -->
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-4">Workout Frequency</h3>
+                            <div class="h-48">
+                                <!-- Chart placeholder - would be replaced with actual chart in implementation -->
+                                <div class="bg-gray-100 rounded-lg w-full h-full flex items-center justify-center text-gray-400">
+                                    Workout Frequency Chart
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Nutrition Consistency -->
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-4">Nutrition Consistency</h3>
+                            <div class="h-48">
+                                <!-- Chart placeholder - would be replaced with actual chart in implementation -->
+                                <div class="bg-gray-100 rounded-lg w-full h-full flex items-center justify-center text-gray-400">
+                                    Nutrition Consistency Chart
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -426,7 +653,7 @@
     </footer>
 
     <script>
-        // Toggle between app and about sections
+        // Toggle between sections
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -444,7 +671,10 @@
                 document.getElementById('mobile-menu').classList.add('hidden');
                 
                 // Scroll to top
-                window.scrollTo(0, 0);
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
         });
         
@@ -454,14 +684,33 @@
             menu.classList.toggle('hidden');
         });
         
-        // Smooth scroll for diet plan link
+        // Smooth scroll for internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Mark exercises as complete
+        document.querySelectorAll('.exercise-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const checkIcon = this.querySelector('.fa-check-circle');
+                if (checkIcon.classList.contains('text-gray-400')) {
+                    checkIcon.classList.remove('text-gray-400');
+                    checkIcon.classList.add('text-green-500');
+                    this.style.opacity = '0.7';
+                } else {
+                    checkIcon.classList.add('text-gray-400');
+                    checkIcon.classList.remove('text-green-500');
+                    this.style.opacity = '1';
+                }
             });
         });
     </script>

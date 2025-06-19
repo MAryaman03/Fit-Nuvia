@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NuVia | Fitness Tracker & Coaching</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #10b981 100%);
+        }
+        .exercise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .progress-circle {
+            width: 120px;
+            height: 120px;
+            position: relative;
+        }
+        .modal {
+            transition: all 0.3s ease;
+        }
+        .switch-section {
+            display: none;
+        }
+        .switch-section.active {
+            display: block;
+        }
+        #menu-toggle:checked ~ #mobile-menu {
+            display: block;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Navigation -->
+    <nav class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-dumbbell text-2xl"></i>
+                    <span class="text-xl font-bold">NuVia</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-white hover:text-blue-200 font-medium nav-link" data-section="app">Fitness App</a>
+                    <a href="#" class="text-white hover:text-blue-200 font-medium nav-link" data-section="about">About Me</a>
+                    <a href="https://nuvia.sbs" class="bg-white text-blue-800 px-4 py-2 rounded-lg font-medium hover:bg-blue-100 transition">Visit nuvia.sbs</a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button class="text-white focus:outline-none" id="menu-btn">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-blue-900" id="mobile-menu">
+            <div class="px-2 pt-2 pb-4 space-y-2">
+                <a href="#" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-blue-700 nav-link" data-section="app">Fitness App</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-blue-700 nav-link" data-section="about">About Me</a>
+                <a href="https://nuvia.sbs" class="block px-3 py-2 rounded-md bg-white text-blue-800 font-medium">Visit nuvia.sbs</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Fitness App Section -->
+    <section id="app-section" class="switch-section active py-12">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl font-bold text-center text-gray-800 mb-12">NuVia Fitness Tracker</h1>
+            
+            <!-- Dashboard Overview -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <!-- Activity Card -->
+                <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center">
+                    <div class="bg-blue-100 p-4 rounded-full mb-4">
+                        <i class="fas fa-walking text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800">Daily Steps</h3>
+                    <p class="text-3xl font-bold text-blue-600">8,542</p>
+                    <p class="text-gray-500 text-sm">+12% from yesterday</p>
+                </div>
+                
+                <!-- Calories Card -->
+                <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center">
+                    <div class="bg-green-100 p-4 rounded-full mb-4">
+                        <i class="fas fa-fire text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800">Calories Burned</h3>
+                    <p class="text-3xl font-bold text-green-600">1,250</p>
+                    <p class="text-gray-500 text-sm">75% of your goal</p>
+                </div>
+                
+                <!-- Heart Rate Card -->
+                <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center">
+                    <div class="bg-red-100 p-4 rounded-full mb-4">
+                        <i class="fas fa-heartbeat text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800">Heart Rate</h3>
+                    <p class="text-3xl font-bold text-red-600">72 <span class="text-sm">BPM</span></p>
+                    <p class="text-gray-500 text-sm">Resting</p>
+                </div>
+                
+                <!-- Sleep Card -->
+                <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center">
+                    <div class="bg-indigo-100 p-4 rounded-full mb-4">
+                        <i class="fas fa-moon text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800">Sleep</h3>
+                    <p class="text-3xl font-bold text-indigo-600">7.2 <span class="text-sm">hrs</span></p>
+                    <p class="text-gray-500 text-sm">92% quality</p>
+                </div>
+            </div>
+            
+            <!-- Workout Section -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Today's Workout Plan</h2>
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Add Exercise</button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Exercise Card 1 -->
+                    <div class="exercise-card bg-gray-50 rounded-xl p-4 shadow-sm border border-gray-200 transition cursor-pointer">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-dumbbell text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Chest & Triceps</h3>
+                                <p class="text-gray-500 text-sm">6 exercises • 45 mins</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded">Strength</span>
+                            <button class="text-blue-600 hover:text-blue-800">
+                                <i class="fas fa-play-circle text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Exercise Card 2 -->
+                    <div class="exercise-card bg-gray-50 rounded-xl p-4 shadow-sm border border-gray-200 transition cursor-pointer">
+                        <div class="flex items-start">
+                            <div class="bg-green-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-running text-green-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Cardio Blast</h3>
+                                <p class="text-gray-500 text-sm">30 mins • HIIT</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="bg-green-100 text-green-600 text-xs px-2 py-1 rounded">Cardio</span>
+                            <button class="text-green-600 hover:text-green-800">
+                                <i class="fas fa-play-circle text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Exercise Card 3 -->
+                    <div class="exercise-card bg-gray-50 rounded-xl p-4 shadow-sm border border-gray-200 transition cursor-pointer">
+                        <div class="flex items-start">
+                            <div class="bg-purple-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-water text-purple-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Morning Yoga</h3>
+                                <p class="text-gray-500 text-sm">15 poses • 30 mins</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="bg-purple-100 text-purple-600 text-xs px-2 py-1 rounded">Flexibility</span>
+                            <button class="text-purple-600 hover:text-purple-800">
+                                <i class="fas fa-play-circle text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Nutrition Section -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Nutrition Today</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Macro Progress -->
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h3 class="font-semibold text-gray-800 mb-4">Macronutrients</h3>
+                        <div class="flex flex-col space-y-4">
+                            <!-- Protein -->
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Protein</span>
+                                    <span class="text-sm font-medium text-gray-700">82/150g</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-red-500 h-2.5 rounded-full" style="width: 55%"></div>
+                                </div>
+                            </div>
+                            <!-- Carbs -->
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Carbs</span>
+                                    <span class="text-sm font-medium text-gray-700">120/200g</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-blue-500 h-2.5 rounded-full" style="width: 60%"></div>
+                                </div>
+                            </div>
+                            <!-- Fats -->
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Fats</span>
+                                    <span class="text-sm font-medium text-gray-700">45/70g</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 64%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Meal Plan -->
+                    <div class="col-span-2">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <!-- Breakfast -->
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <h4 class="font-medium text-gray-800 mb-2">Breakfast</h4>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Oatmeal with berries</li>
+                                    <li>• Scrambled eggs</li>
+                                    <li>• Almond milk</li>
+                                </ul>
+                                <div class="mt-3 text-xs bg-blue-50 text-blue-700 inline-block px-2 py-1 rounded">
+                                    350 kcal
+                                </div>
+                            </div>
+                            <!-- Lunch -->
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <h4 class="font-medium text-gray-800 mb-2">Lunch</h4>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Grilled chicken breast</li>
+                                    <li>• Quinoa</li>
+                                    <li>• Steamed vegetables</li>
+                                </ul>
+                                <div class="mt-3 text-xs bg-green-50 text-green-700 inline-block px-2 py-1 rounded">
+                                    550 kcal
+                                </div>
+                            </div>
+                            <!-- Dinner -->
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <h4 class="font-medium text-gray-800 mb-2">Dinner</h4>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Salmon fillet</li>
+                                    <li>• Sweet potato</li>
+                                    <li>• Asparagus</li>
+                                </ul>
+                                <div class="mt-3 text-xs bg-purple-50 text-purple-700 inline-block px-2 py-1 rounded">
+                                    450 kcal
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="mt-4 text-blue-600 hover:text-blue-800 font-medium text-sm">
+                            <i class="fas fa-plus mr-1"></i> Add Custom Meal
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Water Intake -->
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Water Intake</h2>
+                    <div class="text-gray-700">
+                        <span class="font-bold text-blue-600">5.8</span> / <span>8.0 L</span>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-7 gap-2">
+                    <div class="flex flex-col items-center">
+                        <div class="h-20 w-10 bg-blue-200 rounded-b-lg mb-1 relative">
+                            <div class="absolute bottom-0 w-full bg-blue-500 rounded-b-lg" style="height: 85%"></div>
+                        </div>
+                        <span class="text-xs text-gray-600">Sun</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="h-24 w-10 bg-blue-200 rounded-b-lg mb-1 relative">
+                            <div class="absolute bottom-0 w-full bg-blue-500 rounded-b-lg" style="height: 72%"></div>
+                        </div>
+                        <span class="text-xs text-gray-600">Mon</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="h-28 w-10 bg-blue-200 rounded-b-lg mb-1 relative">
+                            <div class="absolute bottom-0 w-full bg-blue-500 rounded-b-lg" style="height: 60%"></div>
+                        </div>
+                        <span class="text-xs text-gray-600">Tue</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="h-20 w-10 bg-blue-200 rounded-b-lg mb-1 relative">
+                            <div class="absolute bottom-0 w-full bg-blue-500 rounded-b-lg" style="height: 90%"></div>
+                        </div>
+                        <span class="text-xs text-gray-600">Wed</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="h-24 w-10 bg-blue-200 rounded-b-lg mb-1 relative">
+                            <div class="absolute bottom-0 w-full bg-blue-500 rounded-b-lg" style="height: 80%"></div>
+                        </div>
+                        <span class="text-xs text-gray-600">Thu</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="h-20 w-10 bg-blue-200 rounded-b-lg mb-1 relative">
+                            <div class="absolute bottom-0 w-full bg-blue-500 rounded-b-lg" style="height: 70%"></div>
+                        </div>
+                        <span class="text-xs text-gray-600">Fri</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="h-16 w-10 bg-blue-200 rounded-b-lg mb-1 relative">
+                            <div class="absolute bottom-0 w-full bg-blue-400 rounded-b-lg" style="height: 65%"></div>
+                        </div>
+                        <span class="text-xs text-gray-600">Sat</span>
+                    </div>
+                </div>
+                
+                <div class="mt-6 flex space-x-3">
+                    <button class="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-medium">
+                        +250ml
+                    </button>
+                    <button class="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-medium">
+                        +500ml
+                    </button>
+                    <button class="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-medium">
+                        +1L
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Me Section -->
+    <section id="about-section" class="switch-section py-12">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl font-bold text-center text-gray-800 mb-12">About Me</h1>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Trainer Overview -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-gradient-to-br from-blue-800 to-blue-600 flex items-center justify-center p-8">
+                            <div class="text-center">
+                                <img src="https://via.placeholder.com/200" alt="Aryaman Mohanty" class="w-40 h-40 rounded-full border-4 border-white mx-auto mb-4 shadow-lg">
+                                <h2 class="text-xl font-bold text-white">Aryaman Mohanty</h2>
+                                <p class="text-blue-200">Certified Personal Trainer</p>
+                            </div>
+                        </div>
+                        <div class="p-8 md:w-2/3">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">About Me</h3>
+                            <p class="text-gray-600 mb-4">
+                                Certified personal trainer with a passion for helping clients achieve their fitness goals through customized workout plans and nutritional guidance. Specializing in strength training, weight loss, and functional fitness.
+                            </p>
+                            
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Certifications</h4>
+                                    <ul class="text-gray-600 text-sm space-y-1">
+                                        <li>• ISSA Certified Trainer</li>
+                                        <li>• ACE Fitness Nutrition</li>
+                                        <li>• CPR/AED Certified</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Specializations</h4>
+                                    <ul class="text-gray-600 text-sm space-y-1">
+                                        <li>• Strength Training</li>
+                                        <li>• Fat Loss</li>
+                                        <li>• Functional Fitness</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="flex space-x-4">
+                                <a href="https://www.instagram.com/trainwitham_/" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center">
+                                    <i class="fab fa-instagram mr-2"></i> Instagram
+                                </a>
+                                <a href="https://www.linkedin.com/in/aryaman-mohanty-053a041b1/" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition flex items-center">
+                                    <i class="fab fa-linkedin-in mr-2"></i> LinkedIn
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Training Programs -->
+                <div class="bg-white rounded-xl shadow-md p-8 mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Training Programs</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Program 1 -->
+                        <div class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition">
+                            <div class="flex items-start mb-4">
+                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-dumbbell text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Strength Builder</h4>
+                                    <p class="text-gray-500 text-sm">12-week program</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4 text-sm">
+                                Increase your strength with progressive overload techniques and proper form training.
+                            </p>
+                            <div class="flex justify-between items-center">
+                                <span class="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded">10+ clients</span>
+                                <span class="font-bold text-gray-800">₹8000</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Program 2 -->
+                        <div class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition">
+                            <div class="flex items-start mb-4">
+                                <div class="bg-green-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-fire text-green-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Fat Burn Challenge</h4>
+                                    <p class="text-gray-500 text-sm">8-week program</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4 text-sm">
+                                High-intensity workouts combined with nutrition plans to maximize fat loss.
+                            </p>
+                            <div class="flex justify-between items-center">
+                                <span class="bg-green-100 text-green-600 text-xs px-2 py-1 rounded">15+ clients</span>
+                                <span class="font-bold text-gray-800">₹6000</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Program 3 -->
+                        <div class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition">
+                            <div class="flex items-start mb-4">
+                                <div class="bg-purple-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-heartbeat text-purple-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Functional Fitness</h4>
+                                    <p class="text-gray-500 text-sm">Ongoing program</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4 text-sm">
+                                Improve mobility, flexibility and everyday movement patterns with functional training.
+                            </p>
+                            <div class="flex justify-between items-center">
+                                <span class="bg-purple-100 text-purple-600 text-xs px-2 py-1 rounded">5+ clients</span>
+                                <span class="font-bold text-gray-800">₹5000/mo</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Program 4 -->
+                        <div class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition">
+                            <div class="flex items-start mb-4">
+                                <div class="bg-yellow-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-home text-yellow-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Home Workouts</h4>
+                                    <p class="text-gray-500 text-sm">Custom duration</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4 text-sm">
+                                No equipment? No problem. Effective home workouts with minimal equipment.
+                            </p>
+                            <div class="flex justify-between items-center">
+                                <span class="bg-yellow-100 text-yellow-600 text-xs px-2 py-1 rounded">12+ clients</span>
+                                <span class="font-bold text-gray-800">₹4500/mo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonials -->
+                <div class="bg-white rounded-xl shadow-md p-8 mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Client Testimonials</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Testimonial 1 -->
+                        <div class="border-l-4 border-blue-500 pl-4 py-2">
+                            <p class="text-gray-600 italic mb-3">
+                                "Aryaman transformed my fitness journey completely. His personalized approach helped me lose 15kg in 4 months!"
+                            </p>
+                            <div class="flex items-center">
+                                <img src="https://via.placeholder.com/40" alt="Client" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Rahul Sharma</h4>
+                                    <p class="text-gray-500 text-sm">CEO, TechSolutions</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 2 -->
+                        <div class="border-l-4 border-blue-500 pl-4 py-2">
+                            <p class="text-gray-600 italic mb-3">
+                                "The Strength Builder program helped me increase my bench press by 30kg in just 3 months. Highly recommended!"
+                            </p>
+                            <div class="flex items-center">
+                                <img src="https://via.placeholder.com/40" alt="Client" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Priya Patel</h4>
+                                    <p class="text-gray-500 text-sm">Athlete</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 3 -->
+                        <div class="border-l-4 border-blue-500 pl-4 py-2">
+                            <p class="text-gray-600 italic mb-3">
+                                "As a beginner, I was nervous about working out. Aryaman made me comfortable and built my confidence."
+                            </p>
+                            <div class="flex items-center">
+                                <img src="https://via.placeholder.com/40" alt="Client" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Deepika Verma</h4>
+                                    <p class="text-gray-500 text-sm">Student</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 4 -->
+                        <div class="border-l-4 border-blue-500 pl-4 py-2">
+                            <p class="text-gray-600 italic mb-3">
+                                "The nutritional guidance was as valuable as the workouts. My energy levels have never been better!"
+                            </p>
+                            <div class="flex items-center">
+                                <img src="https://via.placeholder.com/40" alt="Client" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Vikram Singh</h4>
+                                    <p class="text-gray-500 text-sm">Doctor</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="bg-white rounded-xl shadow-md p-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Get In Touch</h3>
+                    
+                    <form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <i class="fas fa-dumbbell text-2xl"></i>
+                    <span class="text-xl font-bold">NuVia</span>
+                </div>
+                <div class="flex space-x-6 mb-4 md:mb-0">
+                    <a href="#" class="hover:text-blue-200 transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-blue-200 transition">Terms of Service</a>
+                    <a href="#" class="hover:text-blue-200 transition">FAQ</a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center hover:bg-blue-500 transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.instagram.com/trainwitham_/" class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-500 transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/aryaman-mohanty-053a041b1/" class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center hover:bg-blue-400 transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-6 text-center text-sm text-blue-200">
+                &copy; 2023 NuVia. All rights reserved. <a href="https://nuvia.sbs" class="hover:text-white">nuvia.sbs</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle between app and about sections
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const section = this.getAttribute('data-section');
+                
+                // Hide all sections
+                document.querySelectorAll('.switch-section').forEach(s => {
+                    s.classList.remove('active');
+                });
+                
+                // Show selected section
+                document.getElementById(`${section}-section`).classList.add('active');
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+        
+        // Toggle mobile menu
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Exercise card hover effects
+        document.querySelectorAll('.exercise-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.2)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.boxShadow = '';
+            });
+        });
+    </script>
+</body>
+</html>
